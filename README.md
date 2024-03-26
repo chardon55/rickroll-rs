@@ -1,6 +1,6 @@
 # Rickroll.rs
 
-A kinda pedantic way to rickdoll ;) (requires mpv).
+A kinda pedantic way to rickroll ;) (requires mpv).
 
 License: MIT
 
