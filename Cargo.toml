@@ -3,6 +3,10 @@ name = "rickroll"
 version = "0.1.0"
 edition = "2021"
 description = "A kinda pedantic way to rickroll ;) (requires mpv)"
+license = "MIT"
+repository = "https://github.com/chardon55/rickroll-rs.git"
+homepage = "https://github.com/chardon55/rickroll-rs"
+authors = ["Charles Dong"]
 
 [dependencies]
 clap = { version = "^4.5", features = ["derive"] }
