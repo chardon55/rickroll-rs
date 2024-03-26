@@ -1,0 +1,13 @@
+[package]
+name = "rickroll"
+version = "0.1.0"
+edition = "2021"
+description = "A kinda pedantic way to rickroll ;) (requires mpv)"
+
+[dependencies]
+clap = { version = "^4.5", features = ["derive"] }
+tokio = { version = "^1.36", features = ["full"] }
+uuid = { version = "^1.8", features = ["v4", "fast-rng"] }
+
+[build-dependencies]
+curl = "^0.4"
