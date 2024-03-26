@@ -2,9 +2,9 @@
 use std::env;
 
 use clap::Parser;
-use tokio::{fs, process::Command};
+use tokio::process::Command;
 #[cfg(feature = "offline")]
-use tokio::{fs::File, io::AsyncWriteExt};
+use tokio::{fs::{self, File}, io::AsyncWriteExt};
 #[cfg(feature = "offline")]
 use uuid::Uuid;
 
@@ -66,6 +66,7 @@ async fn main() -> tokio::io::Result<()> {
         .wait()
         .await?;
 
+    #[cfg(feature = "offline")]
     fs::remove_file(path_str).await?;
 
     Ok(())
