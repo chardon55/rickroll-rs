@@ -29,7 +29,7 @@ async fn main() -> tokio::io::Result<()> {
     #[cfg(feature = "offline")]
     let path_str: String = if _args.online {
         println!("[info] Using online resources.");
-        "https://archive.org/download/rick-roll/Rick%20Roll.mp4".to_string()
+        ONLINE_URL.to_string()
     } else {
         print!("[info] Generating random file name... ");
 
