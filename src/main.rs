@@ -1,13 +1,19 @@
+#[cfg(feature = "offline")]
 use std::env;
 
 use clap::Parser;
-use tokio::{fs::{self, File}, io::AsyncWriteExt, process::Command};
+use tokio::{fs, process::Command};
+#[cfg(feature = "offline")]
+use tokio::{fs::File, io::AsyncWriteExt};
+#[cfg(feature = "offline")]
 use uuid::Uuid;
 
+const ONLINE_URL: &str = "https://archive.org/download/rick-roll/Rick%20Roll.mp4";
 
 #[derive(Parser)]
 #[clap(version, about)]
 struct Cli {
+    #[cfg(feature = "offline")]
     #[arg(short, long, help = "Use online resources (namely from the Internet Archive)")]
     online: bool,
 }
@@ -15,9 +21,13 @@ struct Cli {
 #[tokio::main]
 async fn main() -> tokio::io::Result<()> {
 
-    let args = Cli::parse();
+    let _args = Cli::parse();
 
-    let path_str: String = if args.online {
+    #[cfg(not(feature = "offline"))]
+    let path_str: String = ONLINE_URL.to_string();
+
+    #[cfg(feature = "offline")]
+    let path_str: String = if _args.online {
         println!("[info] Using online resources.");
         "https://archive.org/download/rick-roll/Rick%20Roll.mp4".to_string()
     } else {
